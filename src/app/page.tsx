@@ -1,10 +1,11 @@
 import MetaplexLogo from "@/assets/logos/metaplex-logo.png";
 import Header from "@/components/header";
 
-export default function Home() {
+export default function Page() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Header />
+      {/* <Header />
 
       <div
         className="relative z-[-1] flex place-items-center"
@@ -86,7 +87,7 @@ export default function Home() {
             The Metaplex Twitter/X account for news and updates.
           </p>
         </a>
-      </div>
+      </div> */}
     </main>
   );
 }

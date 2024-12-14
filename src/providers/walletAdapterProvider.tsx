@@ -6,6 +6,7 @@ import React, { FC, useMemo } from "react";
 
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
+import { UmiProvider } from "./umiProvider";
 
 type Props = {
   children?: React.ReactNode;
@@ -35,7 +36,9 @@ export const WalletAdapterProvider: FC<Props> = ({ children }) => {
     <WalletProvider wallets={wallets} autoConnect>
       <WalletModalProvider>
         {/* Your app's components go here, nested within the context providers. */}
-        {children}
+        <UmiProvider>
+          {children}
+        </UmiProvider>
       </WalletModalProvider>
     </WalletProvider>
   );

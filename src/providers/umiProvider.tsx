@@ -10,7 +10,15 @@ function UmiProvider({ children }: { children: React.ReactNode }) {
   const umiStore = useUmiStore();
 
   useEffect(() => {
-    if (!wallet.publicKey) return;
+    if (!wallet.publicKey) {
+      console.log("Wallet not connected. Please connect your wallet.");
+      return
+    };
+    console.log("Updating UMI signer with wallet:", {
+      walletPublicKey: wallet.publicKey.toString(),
+      connected: wallet.connected
+    });
+
     // When wallet.publicKey changes, update the signer in umiStore with the new wallet adapter.
     umiStore.updateSigner(wallet as unknown as WalletAdapter);
   }, [wallet, umiStore]);

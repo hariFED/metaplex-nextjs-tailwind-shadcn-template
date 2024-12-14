@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import ThemeSwitcher from "./themeSwitcher";
+import { createTreeMerkle } from "@/lib/merkeltree/createmerkeltree";
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -16,9 +17,11 @@ const Header = () => {
         Get started by editing&nbsp;
         <code className="font-mono font-bold">src/app/page.tsx</code>
       </p>
+
       <div className="flex pt-4 lg:pt-0 w-full items-end justify-center gap-4 lg:static lg:size-auto lg:bg-none">
         <WalletMultiButtonDynamic />
         <ThemeSwitcher />
+        <button onClick={createTreeMerkle}>Create Tree Merkle</button>
       </div>
     </div>
   );

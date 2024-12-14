@@ -1,3 +1,4 @@
+import { mplBubblegum } from "@metaplex-foundation/mpl-bubblegum";
 import {
   Signer,
   Umi,
@@ -18,11 +19,9 @@ interface UmiState {
 }
 
 const useUmiStore = create<UmiState>()((set, get) => ({
-  umi: createUmi("http://api.devnet.solana.com").use(
-    signerIdentity(
-      createNoopSigner(publicKey("11111111111111111111111111111111"))
-    )
-  ),
+  umi: createUmi("http://api.devnet.solana.com")
+    .use(signerIdentity(createNullSigner()))
+    .use(mplBubblegum()),
   signer: undefined,
   updateSigner: (signer) => {
     const currentSigner = get().signer;
@@ -32,7 +31,8 @@ const useUmiStore = create<UmiState>()((set, get) => ({
       !currentSigner ||
       currentSigner.publicKey.toString() !== newSigner.publicKey.toString()
     ) {
-      set(() => ({ signer: newSigner }));
+      const umi = get().umi.use(signerIdentity(newSigner));
+      set(() => ({ signer: newSigner, umi }));
     }
   },
 }));
