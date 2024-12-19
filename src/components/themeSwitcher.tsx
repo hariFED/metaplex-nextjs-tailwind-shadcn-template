@@ -17,7 +17,7 @@ const ThemeSwitcher = () => {
   }
 
   return (
-    <div className="cursor-pointer bg-background text-primary-green border border-b p-3 rounded-lg h-full self-center  lg:static lg:w-auto  lg:rounded-xl lg:border">
+    <div className="cursor-pointer bg-background text-primary-green border border-b px-4 py-2 rounded-lg h-full self-center  lg:static lg:w-auto  lg:rounded-xl lg:border">
       {currentTheme === "light" ? (
         <MoonIcon height={24} width={24} onClick={() => setTheme("dark")} />
       ) : (
